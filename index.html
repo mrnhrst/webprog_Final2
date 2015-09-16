@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Webstorage</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/league.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Bitter|Ubuntu+Mono' rel='stylesheet' type='text/css'>
+
+	
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+				<section>
+					<h1>Web Storage</h1>
+					
+					<p>
+					<small>
+						von Marian Horst 
+					</small>
+					</p>
+				</section>
+
+
+				<section>
+					<h2>Was ist Web Storage?</h2>
+					<p>
+						Eine Technik für Webanwendungen, mit der Daten in einem Webbrowser gespeichert werden.
+						
+					<p>
+						Web Storage bietet dabei die Möglichkeit, Daten lokal oder Session-spezifisch zu speichern. 
+					
+					</p>
+				</section>			
+								
+				<section>
+					<h2>Warum Web Storage nutzen?</h2>
+					<p>
+						HTML-Seiten haben kein Gedächtnis und sind somit zustandslos. 
+					<p>
+						Web Storage verleiht Webseiten ein Gedächtnis und bietet dafür wesentlich mehr Platz im Browser des Benutzers als Cookies.
+					</p>
+				</section>
+				
+				<section>
+					<h2>Web Storage vs. Cookies</h2>
+					<p>
+					Web Storage ist im Browser integriert, wodurch speichern, ändern und löschen von Daten auch offline möglich ist. 
+					<p>
+					Die Daten werden nicht wie bei Cookies auf den Server übertragen, sondern auf dem System des Benutzers gespeichert. 
+					<p>
+					Cookies sind auf 4 KB beschränkt, Web Storage zischen 5 und 10 MB Speicher Verfügung stellen. 
+					
+					</p>
+				</section>
+				
+				<section>
+					<h2>Locale Speicherung</h2>
+					<p>
+						Local Storage ist ein persistenter Speicher.
+					<p>	
+						Daten bleiben bestehen, wenn die Seite oder der Browser geschlossen werden.
+					<p>
+						Die Daten sind mit einer Domain und dem lokalen Benutzerprofil des Zugriffsrechners verknüpft.
+					<p>
+						Cookies werden bei jeder Anfrage im Header mitgesendet, was zusätzlich Traffic produziert.
+					</p>
+				</section>
+				
+				<section>
+					<h2>Session-spezifische Speicherung</h2>
+					<p>
+						Session Storage ist nicht persistent
+					<p>	
+						Dieser überlebt nur, bis die Anwendung oder Seite geschlossen wird.
+					<p>
+						Die Daten sind mit dem Browser-Fenster verknüpft und auf dieses beschränkt.	
+					<p>
+						Ein Reload der Seite ist möglich, ohne die Daten zu verlieren
+					</p>
+				</section>
+		
+				<section>
+					<h2>JavaScript-Funktionen</h2>
+					<p>
+					für Local Storage
+					<pre><code data-trim contenteditable>
+localStorage.setItem('key', 'value');
+//Speichert einen Wert mit dem dazugehörigen Schlüssel.
+
+localStorage.getItem('key');
+//Gibt den Wert des dazugehörigen Schlüssels zurück. 
+
+localStorage.removeItem('key');
+//Löscht den kompletten Datensatz des dazugehörigen Schlüssels.
+
+localStorage.clear();
+//Löscht alle Daten aus dem lokalen Speicher.
+					</code></pre>
+				</section>
+				
+				<section>
+					<h2>JavaScript-Funktionen</h2>
+					<p>
+					für Session Storage
+					<pre><code data-trim contenteditable>
+sessionStorage.setItem('key', 'value');
+//Speichert einen Wert mit dem dazugehörigen Schlüssel.
+
+sessionStorage.getItem('key');
+//Gibt den Wert des dazugehörigen Schlüssels zurück. 
+
+sessionStorage.removeItem('key');
+//Löscht den kompletten Datensatz des dazugehörigen Schlüssels.
+
+sessionStorage.clear();
+//Löscht alle Daten aus dem lokalen Speicher.
+					</code></pre>
+				</section>
+			
+				<section>
+					<h2>Beispiel Local Storage</h2>
+					<p>
+										
+    					<table border="0">
+      				<tr>
+        				<th>Schlüssel: </th>
+        				<th><input type="text" id="key" /></th>
+        
+      				</tr>
+      				<tr>
+        				<td>Wert: </td>
+        				<td><textarea id="value"></textarea></td>
+     			 	</tr>
+    				</table>
+    				
+    				<p><input type="button" id="button" value="Key speichern" onclick="saveIt()"/>
+    				<input type="button" id="button" value="Key entfernen" onclick="removeIt()"/>
+    				<input type="button" id="button" value="Storage löschen" onclick="clearIt()"/>
+    				</p>
+    				
+				</section>
+
+				<section>
+					<h2>Beispiel Session Storage</h2>
+					<p>
+										
+    					<table border="0">
+      				<tr>
+        				<th>Schlüssel: </th>
+        				<th><input type="text" id="keys" /></th>
+        
+      				</tr>
+      				<tr>
+        				<td>Wert: </td>
+        				<td><textarea id="values"></textarea></td>
+     			 	</tr>
+    				</table>
+    				
+    				<p><input type="button" id="button" value="Key speichern" onclick="saveItSession()"/>
+    				<input type="button" id="button" value="Key entfernen" onclick="removeItSession()"/>
+    				<input type="button" id="button" value="Storage löschen" onclick="clearItSession()"/></p>
+    				
+				</section>
+
+				<section>
+					<pre><code data-trim contenteditable>
+  //Local Storage 
+function saveIt()	{
+   var schluessel=document.getElementById("key").value;
+   var wert=document.getElementById("value").value;
+   localStorage.setItem(schluessel,wert);
+   }
+        
+function getIt()	{
+   var wert=localStorage.getItem(schluessel);
+   }
+    
+function removeIt()	{
+    var schluessel=document.getElementById("key").value;
+    localStorage.removeItem(schluessel);
+    document.getElementById("key").value=" ";
+    document.getElementById("value").value=" ";
+	}
+                
+function clearIt()	{
+    localStorage.clear();
+    }
+					</code></pre>
+				</section>
+
+				<section>
+
+ 					<div>
+    				<h1>Beispiel Bild ändern</h1>
+
+
+    				<form>
+
+     				<div>
+        			<select id="image">
+        			<option value="images/katze.jpg" selected>Katze</option>
+        			<option value="images/hund.jpg">Hund</option>
+        			<option value="images/merkel.jpg">Angie</option>
+        			</select>
+      				</div>
+    				</form>
+
+    <p>
+    <img src="images/katze.jpg">
+    </p>
+  </div>
+					
+				</section>
+
+		
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+		</script>
+		<script type="text/javascript" charset="UTF-8">
+       
+       
+       //Local Storage 
+             function saveIt()	{
+        
+         		var schluessel=document.getElementById("key").value;
+                var wert=document.getElementById("value").value;
+                localStorage.setItem(schluessel,wert);
+                
+                }
+        
+    		function getIt()	{
+    
+    			var wert=localStorage.getItem(schluessel);
+    
+    			}
+    
+        
+    		function removeIt()	{
+    			
+    			var schluessel=document.getElementById("key").value;
+    			localStorage.removeItem(schluessel);
+                document.getElementById("key").value=" ";
+                document.getElementById("value").value=" ";
+					
+                }
+                
+    		function clearIt()	{
+                localStorage.clear();
+                
+                }
+    
+    
+    	//Session Storage
+        	function saveItSession()	{
+        
+         		var schluessel=document.getElementById("keys").value;
+                var wert=document.getElementById("values").value;
+                sessionStorage.setItem(schluessel,wert);
+                
+                
+                }
+        
+   			function getItSession()	{
+    
+    			var wert=sessionStorage.getItem(schluessel);
+    
+    			}
+    
+        
+    		function removeItSession()	{
+    			
+    			var schluessel=document.getElementById("keys").value;
+    			sessionStorage.removeItem(schluessel);
+                document.getElementById("keys").value=" ";
+                document.getElementById("values").value=" ";
+					
+                }
+                
+    		function clearItSession()	{
+                sessionStorage.clear();
+                
+                }
+    
+    	</script>
+		<script type="text/javascript" charset="UTF-8">
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'convex', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+  	</script>
+  	<script>
+
+		var imgElem = document.querySelector('img');
+		var imageForm = document.getElementById('image');
+
+		function populateStorage() {
+
+  			localStorage.setItem('image', document.getElementById('image').value);
+  			setStyles();
+			}
+
+		function setStyles() {
+ 			var currentImage = localStorage.getItem('image');
+  			document.getElementById('image').value = currentImage;
+  			imgElem.setAttribute('src', currentImage);
+			}
+		imageForm.onchange = populateStorage;
+
+  	</script>
+	</body>
+</html>
